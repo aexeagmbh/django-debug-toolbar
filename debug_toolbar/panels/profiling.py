@@ -48,10 +48,13 @@ class FunctionCall(object):
                  id=0, parent_ids=[], hsv=(0, 0.5, 1)):
         self.statobj = statobj
         self.func = func
+        print('Y' * 40)
         if stats:
+            print('Using stats {}'.format(stats))
             self.stats = stats
         else:
             tmp = statobj.stats
+            print('Using statobj.stats with key {}'.format(func))
             self.stats = statobj.stats[func][:4]
         self.depth = depth
         self.id = id
