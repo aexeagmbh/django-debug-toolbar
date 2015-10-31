@@ -37,9 +37,15 @@ class DjangoDebugToolbarStats(Stats):
     def get_root_func(self):
         if self.__root is None:
             for func, (cc, nc, tt, ct, callers) in self.stats.items():
-                if len(callers) == 0 and not contains_profiler(func):
-                    self.__root = func
-                    break
+                if len(callers) == 0:
+                    if not contains_profiler(func):
+                        self.__root = func
+                        break
+                else:
+                    print('Skipping func {} with len(callers)={}'.format(
+                        func,
+                        len(callers),
+                    ))
         return self.__root
 
 
