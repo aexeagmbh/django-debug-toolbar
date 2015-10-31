@@ -21,12 +21,14 @@ INVALID_PROFILER_FUNC = '_lsprof.Profiler'
 def contains_profiler(func_tuple):
     """Helper function that checks to see if the tuple contains
     the INVALID_PROFILE_FUNC in any string value of the tuple."""
+    has_profiler = False
     for value in func_tuple:
+        print('X' * 40)
+        print('testing {}'.format(value))
         if isinstance(value, six.string_types) and INVALID_PROFILER_FUNC in value:
-            print('X' * 40)
-            print('Found INVALID_PROFILER_FUNC in {}'.format(value))
-            return True
-    return False
+            print('Found INVALID_PROFILER_FUNC')
+            has_profiler = True
+    return has_profiler
 
 
 class DjangoDebugToolbarStats(Stats):
@@ -49,6 +51,7 @@ class FunctionCall(object):
         if stats:
             self.stats = stats
         else:
+            tmp = statobj.stats
             self.stats = statobj.stats[func][:4]
         self.depth = depth
         self.id = id
