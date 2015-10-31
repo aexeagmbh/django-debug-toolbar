@@ -21,11 +21,10 @@ INVALID_PROFILER_FUNC = '_lsprof.Profiler'
 def contains_profiler(func_tuple):
     """Helper function that checks to see if the tuple contains
     the INVALID_PROFILE_FUNC in any string value of the tuple."""
-    has_profiler = False
     for value in func_tuple:
-        if isinstance(value, six.string_types):
-            has_profiler |= INVALID_PROFILER_FUNC in value
-    return has_profiler
+        if isinstance(value, six.string_types) and INVALID_PROFILER_FUNC in value:
+            return True
+    return False
 
 
 class DjangoDebugToolbarStats(Stats):
