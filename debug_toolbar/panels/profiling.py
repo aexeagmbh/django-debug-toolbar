@@ -23,6 +23,8 @@ def contains_profiler(func_tuple):
     the INVALID_PROFILE_FUNC in any string value of the tuple."""
     for value in func_tuple:
         if isinstance(value, six.string_types) and INVALID_PROFILER_FUNC in value:
+            print('X' * 40)
+            print('Found INVALID_PROFILER_FUNC in {}'.format(value))
             return True
     return False
 
