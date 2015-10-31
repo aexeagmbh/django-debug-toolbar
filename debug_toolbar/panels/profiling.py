@@ -167,7 +167,9 @@ class ProfilingPanel(Panel):
                     self.add_node(func_list, subfunc, max_depth, cum_time=cum_time)
 
     def generate_stats(self, request, response):
+        print('P' * 40)
         if not hasattr(self, 'profiler'):
+            print('Profiling Panel has no profiler!')
             return None
         # Could be delayed until the panel content is requested (perf. optim.)
         self.profiler.create_stats()
