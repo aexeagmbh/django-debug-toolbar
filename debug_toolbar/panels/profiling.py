@@ -177,6 +177,8 @@ class ProfilingPanel(Panel):
         self.stats.calc_callees()
 
         print('A' * 40)
+        print('stats:', self.stats)
+        print('root func:', self.stats.get_root_func())
         root = FunctionCall(self.stats, self.stats.get_root_func(), depth=0)
         print('B' * 40)
 
